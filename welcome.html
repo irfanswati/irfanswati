@@ -1,78 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Form Validation</title>
-<script>
-function validateForm() {
-    let name = document.getElementById("studentName").value;
-    let father = document.getElementById("fatherName").value;
-    let cnic = document.getElementById("cnic").value;
-    let email = document.getElementById("email").value;
-    let pass = document.getElementById("password").value;
-    let confPass = document.getElementById("confPassword").value;
-    let hobbies = document.querySelectorAll('input[name="hobby"]:checked');
-
-    // Only alphabets validation for name and father name
-    let nameRegex = /^[A-Za-z ]+$/;
-    if (!nameRegex.test(name)) {
-        alert("Only characters allowed in Student Name");
-        return false;
-    }
-    if (!nameRegex.test(father)) {
-        alert("Only characters allowed in Father Name");
-        return false;
-    }
-
-    // Only integer values for CNIC (13 digits)
-    let cnicRegex = /^[0-9]{13}$/;
-    if (!cnicRegex.test(cnic)) {
-        alert("Enter valid 13-digit CNIC (only numbers)");
-        return false;
-    }
-
-    // Email validation (_ , @ , . allowed)
-    let emailRegex = /^[A-Za-z0-9._]+@[A-Za-z]+\\.[A-Za-z]{2,}$/;
-    if (!emailRegex.test(email)) {
-        alert("Enter valid email only with _, @, . allowed");
-        return false;
-    }
-
-    // Checkbox validation
-    if (hobbies.length === 0) {
-        alert("Select at least one hobby");
-        return false;
-    }
-
-    // Password match validation
-    if (pass !== confPass) {
-        alert("Passwords do not match");
-        return false;
-    }
-
-    alert("Form Submitted Successfully!");
-    return true;
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eee;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            margin: 6px 0 12px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #888;
+        }
+        button {
+            background: #0066ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0047cc;
+        }
+    </style>
 </head>
-
 <body>
-<h2>Student Registration Form</h2>
-<form onsubmit="return validateForm()">
-    Student Name: <input type="text" id="studentName"><br><br>
-    Father Name: <input type="text" id="fatherName"><br><br>
-    CNIC: <input type="text" id="cnic" maxlength="13"><br><br>
-    Email: <input type="text" id="email"><br><br>
 
-    Hobbies:<br>
-    <input type="checkbox" name="hobby" value="Cricket"> Cricket<br>
-    <input type="checkbox" name="hobby" value="Reading"> Reading<br>
-    <input type="checkbox" name="hobby" value="Music"> Music<br><br>
+    <h1>CV Builder Application</h1>
 
-    Password: <input type="password" id="password"><br><br>
-    Confirm Password: <input type="password" id="confPassword"><br><br>
+    <form>
 
-    <button type="submit">Submit</button>
-</form>
+        <!-- Your Details (Pre-filled) -->
+        <h2>Personal Information</h2>
+
+        <label>Full Name:</label>
+        <input type="text" value="Irfan Ullah" required>
+
+        <label>Email:</label>
+        <input type="email" value="yourEmail@example.com">
+
+        <label>Phone Number:</label>
+        <input type="tel" value="+92**********">
+
+        <label>Address:</label>
+        <textarea>Pakistan</textarea>
+
+        <!-- Educational Information -->
+        <h2>Educational Information</h2>
+        <label>Degree/Program:</label>
+        <input type="text" value="BS Software Engineering" required>
+
+        <label>Institute Name:</label>
+        <input type="text" value="Abdul Wali Khan University Mardan (AWKUM)" required>
+
+        <label>Passing Year:</label>
+        <input type="number" placeholder="e.g. 2025" required>
+
+        <!-- Work Experience -->
+        <h2>Work Experience</h2>
+        <input type="text" placeholder="Company name">
+        <input type="text" placeholder="Your position">
+        <input type="text" placeholder="e.g. 2023 - Present">
+        <textarea placeholder="Describe your job experience"></textarea>
+
+        <!-- Skills -->
+        <h2>Skills</h2>
+        <input type="text" placeholder="e.g. HTML, CSS, JavaScript" required>
+
+        <!-- Languages -->
+        <h2>Languages</h2>
+        <input type="text" placeholder="e.g. English, Urdu" required>
+
+        <!-- References -->
+        <h2>References</h2>
+        <input type="text" placeholder="Reference person name">
+        <input type="text" placeholder="Contact details">
+
+        <button type="submit">Generate CV</button>
+    </form>
+
 </body>
 </html>
